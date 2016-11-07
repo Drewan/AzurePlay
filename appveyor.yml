@@ -1,0 +1,15 @@
+version: 1.0.{build}
+configuration: Release
+shallow_clone: true
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+before_build:
+- cmd: nuget restore c:\projects\AzurePlay\src
+build:
+  publish_wap: true
+  publish_azure: true
+  verbosity: minimal
