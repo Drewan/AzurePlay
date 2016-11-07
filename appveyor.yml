@@ -25,5 +25,5 @@ deploy:
   deployment_label: $(appveyor_build_version)
   artifact: AzureCloudService.cspkg
   target_profile: Cloud
-  do_not_start_deployment: true
+  do_not_start_deployment: false
   recreate_deployment: true
