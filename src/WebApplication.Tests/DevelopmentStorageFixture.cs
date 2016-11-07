@@ -1,34 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using Lokad.Cloud.Storage;
+using Xunit;
 
 namespace WebApplication.Tests
 {
-    public class DevelopmentStorageFixture
+    public class BlobStorageFixture
     {
-        protected const string ContainerName = "events-container";
-        protected const string BlobName = "myprefix/myblob";
+        protected const string ContainerName = "events";
 
-        public DevelopmentStorageFixture()
+        public BlobStorageFixture()
         {
             Storage = CloudStorage
-                .ForDevelopmentStorage()
+                .ForInMemoryStorage()
                 .BuildBlobStorage();
-
             Storage.CreateContainerIfNotExist(ContainerName);
-            Storage.DeleteBlobIfExist(ContainerName, BlobName);
         }
 
         public IBlobStorageProvider Storage { get; set; }
     }
 
+
+    public class AzureStorageTests : BlobStorageFixture
+    {
+        [Fact]
+        public void CanWriteBlobToMemory()
+        {
+            var metadata = new Message
+            {
+                SequenceId = 2,
+                RowKey = "126D1938-034C-449E-9E3B-1395BB106816"
+            };
+            var message = new Event { Content = "{}" };
+
+            Storage.PutBlob(metadata, message);
+
+            var blob = Storage.ListBlobs<Event>("events").Single();
+
+            Assert.Equal(blob.Content, "{}");
+        }
+    }
     
-
-
     [DataContract]
     public class Event
     {
@@ -40,7 +52,7 @@ namespace WebApplication.Tests
     {
         public override string ContainerName
         {
-            get { return "events-container"; }
+            get { return "events"; }
         }
 
         [Rank(1, true)]
