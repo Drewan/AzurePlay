@@ -1,5 +1,5 @@
 version: 1.0.{build}
-cache: packages -> **\packages.config
+cache: src\packages -> **\packages.config
 configuration: Release
 shallow_clone: true
 assembly_info:
