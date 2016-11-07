@@ -82,7 +82,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DevelopmentStorageFixture.cs" />
+    <Compile Include="AzureStorageTests.cs" />
+    <Compile Include="InMemoryStorageFixture.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
