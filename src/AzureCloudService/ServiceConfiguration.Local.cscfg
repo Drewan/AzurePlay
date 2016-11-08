@@ -7,4 +7,10 @@
       <Setting name="Loggly.Enabled" value="false" />
     </ConfigurationSettings>
   </Role>
+  <Role name="WorkerRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+    </ConfigurationSettings>
+  </Role>
 </ServiceConfiguration>
