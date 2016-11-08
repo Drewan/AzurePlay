@@ -1,6 +1,6 @@
 ﻿{
   "$schema": "http://schemastore.org/schemas/json/webjob-publish-settings.json",
-  "webJobName": "CopyBlobToDatabase",
+  "webJobName": "WorkerEngine",
   "startTime": null,
   "endTime": null,
   "jobRecurrenceFrequency": null,
